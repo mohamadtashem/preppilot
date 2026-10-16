@@ -24,6 +24,7 @@ BLUE = PALETTE[0]
 DIVERGING = ["#184f95", "#3987e5", "#9ec5f4", "#f0efec", "#f4b2b1", "#e66767", "#a8302f"]
 SAMPLE = Path(__file__).parent / "sample_data" / "messy_sales.csv"
 LOGO = Path(__file__).parent / "assets" / "logo.png"
+SPLASH = Path(__file__).parent / "assets" / "splash.html"
 FAVICON = Path(__file__).parent / "assets" / "favicon.png"
 PAGES = ["Upload", "Explore", "Clean", "Transform", "Results"]
 UPLOAD_TYPES = ["csv", "tsv", "txt", "xlsx", "xlsm", "json", "jsonl"]
@@ -47,6 +48,11 @@ if hasattr(st, "logo") and LOGO.exists():
         st.logo(str(LOGO), link=AUTHOR_LINK)
 state = st.session_state
 state.setdefault("page", 1)
+
+# A short animated intro with the logo, shown once when someone opens the app.
+if not state.get("splash_done") and SPLASH.exists():
+    state.splash_done = True
+    st.markdown(SPLASH.read_text(encoding="utf-8"), unsafe_allow_html=True)
 
 st.markdown("""
 <style>
