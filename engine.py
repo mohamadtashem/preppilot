@@ -1637,6 +1637,25 @@ def _table(df: pd.DataFrame, max_rows: int = 200) -> str:
     return f'<div class="table-wrap"><table><thead><tr>{head}</tr></thead><tbody>{"".join(body)}</tbody></table></div>'
 
 
+def _logo_svg(size: int) -> str:
+    """The PrepPilot logo (a heatmap that spells M), inline so the report stays one file."""
+    filled = [(0, 0), (4, 0), (0, 1), (1, 1), (3, 1), (4, 1), (0, 2), (4, 2), (0, 3), (4, 3), (0, 4), (4, 4)]
+    cells = []
+    for row in range(5):
+        for col in range(5):
+            x, y = 9.5 + 17 * col, 9.5 + 17 * row
+            if (col, row) == (2, 2):
+                fill = 'fill="#EB6834"'
+            elif (col, row) in filled:
+                fill = 'fill="#4C93E8"'
+            else:
+                fill = 'fill="#FFFFFF" fill-opacity="0.09"'
+            cells.append(f'<rect x="{x}" y="{y}" width="13" height="13" rx="3" {fill}/>')
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 100 100" role="img" aria-label="PrepPilot logo" '
+            f'style="display:block;margin-bottom:14px"><rect width="100" height="100" rx="22" fill="#0F1B33"/>'
+            + "".join(cells) + "</svg>")
+
+
 def build_report(original: pd.DataFrame, final: pd.DataFrame, steps: list[Step],
                  dataset_name: str = "dataset", options: dict | None = None) -> str:
     """A self-contained HTML EDA report comparing the original and final data."""
@@ -1737,6 +1756,7 @@ footer {{ margin-top:48px; color:var(--muted); font-size:13px; }}
 </style></head>
 <body><main>
 <header>
+  {_logo_svg(40)}
   <h1>Exploratory Data Analysis</h1>
   <p>{esc(dataset_name)} · generated {datetime.now():%d %B %Y, %H:%M}</p>
 </header>
@@ -1769,5 +1789,5 @@ footer {{ margin-top:48px; color:var(--muted); font-size:13px; }}
 <p class="muted">Put this script next to the original file and run it to get exactly the same cleaned dataset.</p>
 <pre><code>{script}</code></pre>
 
-<footer>Generated with PrepPilot.</footer>
+<footer>Generated with PrepPilot by Mohamad Al Tashem.</footer>
 </main></body></html>"""

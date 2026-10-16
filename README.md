@@ -1,4 +1,6 @@
-# 🧭 PrepPilot
+<img src="assets/logo.svg" alt="PrepPilot logo" width="88">
+
+# PrepPilot
 
 **Your co-pilot for data preparation. Upload a messy dataset, explore it, clean it, transform it, and get clean data, a finance view, a full EDA report with charts, and the Python code that reproduces every step.**
 

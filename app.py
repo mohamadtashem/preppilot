@@ -23,6 +23,8 @@ PALETTE = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6
 BLUE = PALETTE[0]
 DIVERGING = ["#184f95", "#3987e5", "#9ec5f4", "#f0efec", "#f4b2b1", "#e66767", "#a8302f"]
 SAMPLE = Path(__file__).parent / "sample_data" / "messy_sales.csv"
+LOGO = Path(__file__).parent / "assets" / "logo.png"
+FAVICON = Path(__file__).parent / "assets" / "favicon.png"
 PAGES = ["Upload", "Explore", "Clean", "Transform", "Results"]
 UPLOAD_TYPES = ["csv", "tsv", "txt", "xlsx", "xlsm", "json", "jsonl"]
 DATE_FORMATS = {"Detect automatically": None, "Day first (31/12/2024)": True, "Month first (12/31/2024)": False}
@@ -32,7 +34,17 @@ CHOICE_LABELS = {
     "most common value": "Fill with the most common value", "previous value": "Fill with the previous row's value",
 }
 
-st.set_page_config(page_title="PrepPilot", page_icon="🧭", layout="wide")
+try:
+    from PIL import Image
+    _icon = Image.open(FAVICON)
+except Exception:  # the app still works without the icon file
+    _icon = "📊"
+st.set_page_config(page_title="PrepPilot", page_icon=_icon, layout="wide")
+if hasattr(st, "logo") and LOGO.exists():
+    try:
+        st.logo(str(LOGO), size="large", link=AUTHOR_LINK)
+    except TypeError:  # older Streamlit without the size option
+        st.logo(str(LOGO), link=AUTHOR_LINK)
 state = st.session_state
 state.setdefault("page", 1)
 
@@ -1053,7 +1065,7 @@ def page_results() -> None:
 # ---------------------------------------------------------------------------
 
 with st.sidebar:
-    st.title("🧭 PrepPilot")
+    st.title("PrepPilot")
     st.caption("Your co-pilot for data preparation: from a messy file to clean data and a full EDA report.")
     for i, page_name in enumerate(PAGES, 1):
         st.button(f"{i}. {page_name}", key=f"nav_{i}", type="primary" if i == state.page else "secondary",
