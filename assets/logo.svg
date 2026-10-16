@@ -1,10 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Mohamad Al Tashem logo: a rising bar chart with a trend line">
-<rect width="100" height="100" rx="22" fill="#0F1B33"/>
-<rect x="15" y="79" width="70" height="3" rx="1.5" fill="#FFFFFF" fill-opacity="0.2"/>
-<rect x="18" y="59" width="12" height="18" rx="3" fill="#2F5E9E"/>
-<rect x="36" y="49" width="12" height="28" rx="3" fill="#3A75C4"/>
-<rect x="54" y="37" width="12" height="40" rx="3" fill="#4C93E8"/>
-<rect x="72" y="23" width="12" height="54" rx="3" fill="#7DB3F2"/>
-<polyline points="24,50 42,40 60,28 78,14" fill="none" stroke="#EB6834" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="78" cy="14" r="6" fill="#EB6834"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Mohamad Al Tashem logo: bars shaped like an M with a rising line chart">
+<rect width="100" height="100" rx="22" fill="#1B1F22"/>
+<g fill="#FFFFFF">
+<rect x="17" y="20" width="10" height="56" rx="5"/>
+<rect x="31" y="31" width="10" height="51" rx="5"/>
+<rect x="45" y="42" width="10" height="30" rx="5"/>
+<rect x="59" y="31" width="10" height="51" rx="5"/>
+<rect x="73" y="20" width="10" height="56" rx="5"/>
+</g>
+<polyline points="22,63 36,55 50,59 64,45 78,34" fill="none" stroke="#1B1F22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#FFFFFF" stroke="#1B1F22" stroke-width="2.5">
+<circle cx="22" cy="63" r="3.8"/>
+<circle cx="36" cy="55" r="3.8"/>
+<circle cx="50" cy="59" r="3.8"/>
+<circle cx="64" cy="45" r="3.8"/>
+</g>
+<circle cx="78" cy="34" r="4.4" fill="#EB6834" stroke="#1B1F22" stroke-width="2.5"/>
 </svg>
