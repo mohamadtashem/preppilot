@@ -2,6 +2,8 @@
 
 # PrepPilot
 
+**▶ Try it live: [preppilot-app.streamlit.app](https://preppilot-app.streamlit.app/)**
+
 **Your co-pilot for data preparation. Upload a messy dataset, explore it, clean it, transform it, and get clean data, a finance view, a full EDA report with charts, and the Python code that reproduces every step.**
 
 Data preparation is one of the most time-consuming parts of any analysis. PrepPilot turns the usual notebook routine (fix types, handle missing values, remove duplicates, check outliers, explore distributions) into a guided five-step workflow, without hiding the code.
