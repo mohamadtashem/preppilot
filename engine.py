@@ -1638,22 +1638,18 @@ def _table(df: pd.DataFrame, max_rows: int = 200) -> str:
 
 
 def _logo_svg(size: int) -> str:
-    """The PrepPilot logo (a heatmap that spells M), inline so the report stays one file."""
-    filled = [(0, 0), (4, 0), (0, 1), (1, 1), (3, 1), (4, 1), (0, 2), (4, 2), (0, 3), (4, 3), (0, 4), (4, 4)]
-    cells = []
-    for row in range(5):
-        for col in range(5):
-            x, y = 9.5 + 17 * col, 9.5 + 17 * row
-            if (col, row) == (2, 2):
-                fill = 'fill="#EB6834"'
-            elif (col, row) in filled:
-                fill = 'fill="#4C93E8"'
-            else:
-                fill = 'fill="#FFFFFF" fill-opacity="0.09"'
-            cells.append(f'<rect x="{x}" y="{y}" width="13" height="13" rx="3" {fill}/>')
+    """The logo (a rising bar chart with a trend line), inline so the report stays one file."""
     return (f'<svg width="{size}" height="{size}" viewBox="0 0 100 100" role="img" aria-label="PrepPilot logo" '
-            f'style="display:block;margin-bottom:14px"><rect width="100" height="100" rx="22" fill="#0F1B33"/>'
-            + "".join(cells) + "</svg>")
+            'style="display:block;margin-bottom:14px">'
+            '<rect width="100" height="100" rx="22" fill="#0F1B33"/>'
+            '<rect x="15" y="79" width="70" height="3" rx="1.5" fill="#FFFFFF" fill-opacity="0.2"/>'
+            '<rect x="18" y="59" width="12" height="18" rx="3" fill="#2F5E9E"/>'
+            '<rect x="36" y="49" width="12" height="28" rx="3" fill="#3A75C4"/>'
+            '<rect x="54" y="37" width="12" height="40" rx="3" fill="#4C93E8"/>'
+            '<rect x="72" y="23" width="12" height="54" rx="3" fill="#7DB3F2"/>'
+            '<polyline points="24,50 42,40 60,28 78,14" fill="none" stroke="#EB6834" stroke-width="4.5" '
+            'stroke-linecap="round" stroke-linejoin="round"/>'
+            '<circle cx="78" cy="14" r="6" fill="#EB6834"/></svg>')
 
 
 def build_report(original: pd.DataFrame, final: pd.DataFrame, steps: list[Step],
